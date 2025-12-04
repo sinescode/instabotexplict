@@ -4,8 +4,6 @@ import json
 import logging
 import re
 import os # Import OS to read env vars
-from datetime import datetime
-
 import pandas as pd
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import CommandStart
@@ -246,7 +244,10 @@ def create_styled_excel(df):
 # ------------------------------------------------------------------------------
 
 def get_timestamp():
-    return datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
+    # Add +6 hours to current time
+    time_plus_6 = datetime.now() + timedelta(hours=6)
+    return time_plus_6.strftime("%d_%m_%Y_%I_%M_%S_%p")
+
 
 def is_phone_number(s):
     if not s: return False
